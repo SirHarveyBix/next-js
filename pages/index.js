@@ -1,9 +1,8 @@
-import styles from '../styles/Home.module.css';
-
-export default function Home() {
+function HomePage() {
   return (
-    <div className={styles.container}>
-      <h1>Hello Next</h1>
+    <div>
+      <h1>Home Page</h1>
     </div>
   );
 }
+export default HomePage;
