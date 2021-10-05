@@ -23,7 +23,9 @@ function EventsSearch(props) {
           <label htmlFor="year">Year</label>
           <select id="year" ref={yearInputRef}>
             {years.map((year) => (
-              <option value={`${year.value}`}>{year.value}</option>
+              <option key={year.id} value={`${year.value}`}>
+                {year.value}
+              </option>
             ))}
           </select>
         </div>
@@ -31,7 +33,9 @@ function EventsSearch(props) {
           <label htmlFor="month">Month</label>
           <select id="month" ref={monthInputRef}>
             {months.map((month) => (
-              <option value={`${month.id}`}>{month.value}</option>
+              <option key={month.id} value={`${month.id}`}>
+                {month.value}
+              </option>
             ))}
           </select>
         </div>
