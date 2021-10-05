@@ -1,4 +1,4 @@
-import { months } from '../../data';
+import { months, years } from '../../data';
 import Button from '../ui/Button';
 import classes from '../../styles/EventsSearch.module.css';
 
@@ -8,9 +8,10 @@ function EventsSearch() {
       <div className={classes.controls}>
         <div className={classes.control}>
           <label htmlFor="year">Year</label>
-          <select name="" id="year">
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
+          <select id="year">
+            {years.map((year) => (
+              <option value={`${year.value}`}>{year.value}</option>
+            ))}
           </select>
         </div>
         <div className={classes.control}>
