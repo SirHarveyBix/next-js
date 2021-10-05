@@ -1,16 +1,14 @@
 import { EventList } from '../../components/events/EventList';
 import { getAllEvents } from '../../data';
-
+import EventsSearch from '../../components/events/EventsSearch';
 function EventsPage() {
   const event = getAllEvents();
 
-  if (!event) return <p>No event found !</p>;
-
   return (
-    <div>
-      <h1>Events Page</h1>
+    <>
+      <EventsSearch />
       <EventList items={event} />
-    </div>
+    </>
   );
 }
 export default EventsPage;
