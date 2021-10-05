@@ -1,20 +1,15 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { EventList } from '../../components/events/EventList';
+import { getAllEvents } from '../../data';
 
 function EventsPage() {
-  const router = useRouter();
+  const event = getAllEvents();
 
-  function loadEventHandler() {
-    router.push({
-      pathname: '/events/[eventId]',
-      query: { eventId: 1 },
-    });
-  }
+  if (!event) return <p>No event found !</p>;
+
   return (
     <div>
-      <Link href="/">HomePage</Link>
       <h1>Events Page</h1>
-      <button onClick={loadEventHandler}>select this event</button>
+      <EventList items={event} />
     </div>
   );
 }
