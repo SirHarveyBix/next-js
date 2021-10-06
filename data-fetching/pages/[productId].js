@@ -11,18 +11,19 @@ function ProductDetailPage(props) {
   );
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  console.log('params', params);
-  const productId = params.productId;
-  console.log('productId', productId);
-
+const getData = async () => {
   const dataPath = path.join(process.cwd(), 'data', 'index.json');
   const jsonData = await fs.readFile(dataPath);
   const data = JSON.parse(jsonData);
+  return data;
+};
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const productId = params.productId;
+  const data = await getData();
 
   const product = data.products.find((product) => product.id === productId);
-
   return {
     props: {
       loadedProps: product,
@@ -31,15 +32,19 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+  const data = await getData();
+  const pathsWithParams = data.products.map((product) => ({
+    params: { productId: `${product.id}` },
+  }));
+
   return {
-    paths: [
-      //TODO up this part with number of id
-      { params: { productId: 'p1' } },
-      { params: { productId: 'p2' } },
-      { params: { productId: 'p3' } },
-      { params: { productId: 'p4' } },
-    ],
-    fallback: false,
+    // pre-generate only this data
+    paths: pathsWithParams,
+
+    // false : get only data that's pre-fetched from params : { id }
+    // true : allow to get other data without pre-feteching
+    // 'blocking' : allow to get other data without pre-feteching, and wait till it's got
+    fallback: 'blocking',
   };
 }
 export default ProductDetailPage;
