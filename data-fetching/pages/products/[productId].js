@@ -40,12 +40,7 @@ export async function getStaticPaths() {
   }));
 
   return {
-    // pre-generate only this data
     paths: pathsWithParams,
-
-    // false : get only data that's pre-fetched from params : { id }
-    // true : allow to get other data without pre-feteching
-    // 'blocking' : allow to get other data without pre-feteching, and wait till it's got
     fallback: 'blocking',
   };
 }

@@ -2,6 +2,7 @@
 
 Pre-generate page :
 
+Allow next to pre-render thoses data, before initializing,  ```return``` will pass to the page component as props
 ```js
 export async function getStaticProps(context) {
   const { params } = context;
@@ -14,12 +15,11 @@ export async function getStaticProps(context) {
     props: {
       loadedProps: product,
     },
+    revalidate: 30,
     notFound: true,
   };
 }
 ```
-#
-Pre-generate page :
 ```js
 export async function getStaticPaths() {
 
