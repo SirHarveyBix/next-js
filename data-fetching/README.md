@@ -1,3 +1,5 @@
+[[productId].js](./pages/products/[productId].js)
+
 ```js
 export async function getStaticProps(context) {
   const { params } = context;
@@ -44,6 +46,7 @@ fallback: 'blocking'
 ```'blocking'``` : allow to get other data without pre-feteching, and wait till it's got
 #
 
+[[uid].js](./pages/[uid].js)
 
 this will be ran only on the server
 
