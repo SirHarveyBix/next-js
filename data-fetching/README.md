@@ -14,6 +14,7 @@ export async function getStaticProps(context) {
   };
 }
 ```
+#
 
 ```js
 export async function getStaticPaths() {
@@ -24,34 +25,25 @@ export async function getStaticPaths() {
 
   return {
     // pre-generate only this data
-    paths: [{ params: { id: '1' } }, { params: { id: '2' } }, { params: { id: '3' } }],
+    paths: [
+    { params: { id: '1' } },
+    { params: { id: '2' } },
+    { params: { id: '3' } }
+    ],
     fallback: 'blocking',
   };
 }
 ```
-
-```js
-false;
+```js 
+fallback: 'blocking' 
 ```
+```false``` : get only data that's pre-fetched from params : { id }
 
-    : get only data that's pre-fetched from params : { id }
+```true``` : allow to get other data without pre-feteching
 
-```js
-true;
-```
+```'blocking'``` : allow to get other data without pre-feteching, and wait till it's got
+#
 
-    : allow to get other data without pre-feteching
-
-```js
-'blocking';
-```
-
-     : allow to get other data without pre-feteching, and wait till it's got
-
-```js
-    fallback: 'blocking',
-
-```
 
 this will be ran only on the server
 
