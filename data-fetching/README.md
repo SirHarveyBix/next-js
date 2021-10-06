@@ -1,5 +1,7 @@
 [[productId].js](./pages/products/[productId].js)
 
+Pre-generate page :
+
 ```js
 export async function getStaticProps(context) {
   const { params } = context;
@@ -17,16 +19,12 @@ export async function getStaticProps(context) {
 }
 ```
 #
-
+Pre-generate page :
 ```js
 export async function getStaticPaths() {
-  const data = await getData();
-  const pathsWithParams = data.products.map((product) => ({
-    params: { productId: `${product.id}` },
-  }));
 
   return {
-    // pre-generate only this data
+  // pre-generate only this data
     paths: [
     { params: { id: '1' } },
     { params: { id: '2' } },
@@ -48,7 +46,7 @@ fallback: 'blocking'
 
 [[uid].js](./pages/[uid].js)
 
-this will be ran only on the server
+This will be ran only on the server / will be generated only at the request 
 
 ```js
 export async function getServerSideProps(context) {
