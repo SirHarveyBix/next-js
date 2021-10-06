@@ -18,7 +18,6 @@ export default function Home(props) {
   );
 }
 
-// this function allow next to pre render thoses data, before initializing
 export async function getStaticProps() {
   const dataPath = path.join(process.cwd(), 'data', 'index.json');
   const jsonData = await fs.readFile(dataPath);
@@ -37,7 +36,6 @@ export async function getStaticProps() {
     };
   }
   return {
-    // will be passed to the page component as props
     props: {
       products: data.products,
     },
