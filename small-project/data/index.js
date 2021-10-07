@@ -1,4 +1,5 @@
 // picked up from : https://github.com/mschwarzmueller/nextjs-course-code/blob/03-prj-routing-extra-files/data/dummy-data.js
+// firebase db : https://console.firebase.google.com/u/0/project/nextjs-5417c/database/nextjs-5417c-default-rtdb/data
 const today = new Date();
 const DUMMY_EVENTS = [
   {
@@ -29,6 +30,16 @@ const DUMMY_EVENTS = [
     location: 'My Street 12, 10115 Broke City',
     date: `${today.getFullYear() + 1}-04-10`,
     image: 'images/extrovert-event.jpg',
+    isFeatured: true,
+  },
+  {
+    id: 'e4',
+    title: 'A Code Example',
+    description:
+      "You don't know what to work on ? Might wan't to improve your actual skill on languages you actually know ? Wrong idea, despite of improving your talents on React you already know, try out GraphQL, call and make you databases with prisma, type everthing you can with TypeScript, and try the Server Side Rendering, rather to introspect the incremental Static Regeneration, for your users !",
+    location: 'New Hemp Instead 420, 10999 High Sky City',
+    date: `${today.getFullYear()}-08-17`,
+    image: 'images/what-to-learn.jpg',
     isFeatured: true,
   },
 ];
