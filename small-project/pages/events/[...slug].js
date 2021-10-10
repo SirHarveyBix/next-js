@@ -3,7 +3,7 @@ import { EventList } from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import ResultsTitle from '../../components/events/ResultsTitle';
 import { getFilteredEvents } from '../../data';
-import Button from '../../components/ui/Button';
+import CustomButton from '../../components/ui/CustomButton';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 
 function FilteredEvents() {
@@ -38,7 +38,7 @@ function FilteredEvents() {
             <p>Invalid filter, please change dates</p>
           </ErrorAlert>
           <EventsSearch onSearch={findEventsHandler} />
-          <Button link="/events">Show all events</Button>
+          <CustomButton link="/events">Show all events</CustomButton>
         </div>
       </>
     );
@@ -52,7 +52,7 @@ function FilteredEvents() {
             <p> No events Found for the chosen dates</p>
           </ErrorAlert>
           <EventsSearch onSearch={findEventsHandler} />
-          <Button link="/events">Show all events</Button>
+          <CustomButton link="/events">Show all events</CustomButton>
         </div>
       </>
     );

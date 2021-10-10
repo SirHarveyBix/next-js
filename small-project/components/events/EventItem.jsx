@@ -1,4 +1,4 @@
-import Button from '../ui/Button';
+import CustomButton from '../ui/CustomButton';
 import classes from '../../styles/EventItem.module.css';
 import DateIcon from '../icons/date-icon';
 import AddressIcon from '../icons/address-icon';
@@ -31,12 +31,12 @@ export const EventItem = (props) => {
           </div>
         </div>
         <div className={classes.actions}>
-          <Button link={exploreLink}>
+          <CustomButton link={exploreLink}>
             <span> Explore Event </span>
             <span className={classes.icon}>
               <ArrowRightIcon />
             </span>
-          </Button>
+          </CustomButton>
         </div>
       </div>
     </li>

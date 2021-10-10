@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { months, years } from '../../data';
-import Button from '../ui/Button';
+import CustomButton from '../ui/CustomButton';
 import classes from '../../styles/EventsSearch.module.css';
 
 function EventsSearch(props) {
@@ -40,7 +40,7 @@ function EventsSearch(props) {
           </select>
         </div>
       </div>
-      <Button>Find events </Button>
+      <CustomButton>Find events </CustomButton>
     </form>
   );
 }
