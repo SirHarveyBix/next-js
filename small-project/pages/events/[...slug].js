@@ -2,11 +2,12 @@ import { useRouter } from 'next/router';
 import { EventList } from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import ResultsTitle from '../../components/events/ResultsTitle';
-import { getFilteredEvents } from '../../data';
-import Button from '../../components/ui/Button';
+import { data } from '../../data/index';
+import CustomButton from '../../components/ui/CustomButton';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 
-function FilteredEvents() {
+function FilteredEvents(props) {
+  const { filteredEvents } = props;
   const router = useRouter();
   const filterData = router.query.slug;
   if (!filterData) return <p className="center">Loading ...</p>;
@@ -15,7 +16,6 @@ function FilteredEvents() {
 
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
-  const filteredEvents = getFilteredEvents({ year: numYear, month: numMonth });
 
   const findEventsHandler = (year, month) => {
     const fullPath = `/events/${year}/${month}`;
@@ -38,7 +38,7 @@ function FilteredEvents() {
             <p>Invalid filter, please change dates</p>
           </ErrorAlert>
           <EventsSearch onSearch={findEventsHandler} />
-          <Button link="/events">Show all events</Button>
+          <CustomButton link="/events">Show all events</CustomButton>
         </div>
       </>
     );
@@ -52,7 +52,7 @@ function FilteredEvents() {
             <p> No events Found for the chosen dates</p>
           </ErrorAlert>
           <EventsSearch onSearch={findEventsHandler} />
-          <Button link="/events">Show all events</Button>
+          <CustomButton link="/events">Show all events</CustomButton>
         </div>
       </>
     );
@@ -66,3 +66,35 @@ function FilteredEvents() {
   );
 }
 export default FilteredEvents;
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const eventsData = await data;
+
+  const filteredYear = params.slug[0];
+  const filteredMonth = params.slug[1];
+
+  const numYear = +filteredYear;
+  const numMonth = +filteredMonth;
+
+  const filteredEvents = eventsData.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate.getFullYear() === numYear && eventDate.getMonth() === numMonth - 1;
+  });
+
+  return {
+    props: { filteredEvents },
+  };
+}
+
+export async function getStaticPaths() {
+  const eventData = await data;
+  const pathsWithParams = eventData.map((event) => ({
+    params: { slug: [`${event.date}`] },
+  }));
+
+  return {
+    paths: pathsWithParams,
+    fallback: 'blocking',
+  };
+}

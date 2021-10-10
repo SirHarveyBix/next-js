@@ -1,16 +1,13 @@
 import { Fragment } from 'react';
-import { useRouter } from 'next/router';
-import { getEventById } from '../../data';
+import { data } from '../../data/index';
 import EventSummary from '../../components/event-detail/EventSummary';
 import EventLogistics from '../../components/event-detail/EventLogistics';
 import EventContent from '../../components/event-detail/EventContent';
 import ErrorAlert from '../../components/ui/ErrorAlert';
-import Button from '../../components/ui/Button';
+import CustomButton from '../../components/ui/CustomButton';
 
-function EventDetailPage() {
-  const router = useRouter();
-  const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+function EventDetailPage(props) {
+  const event = props;
 
   if (!event)
     return (
@@ -18,7 +15,7 @@ function EventDetailPage() {
         <ErrorAlert>
           <p>No event found !</p>
         </ErrorAlert>
-        <Button link="/events">Show all events</Button>
+        <CustomButton link="/events">Show all events</CustomButton>
       </div>
     );
 
@@ -38,3 +35,21 @@ function EventDetailPage() {
   );
 }
 export default EventDetailPage;
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const id = params.eventId;
+  const event = (await data).find((event) => event.id === id);
+
+  return { props: event };
+}
+
+export async function getStaticPaths() {
+  const eventData = await data;
+  const pathsWithParams = eventData.map((event) => ({ params: { eventId: `${event.id}` } }));
+
+  return {
+    paths: pathsWithParams,
+    fallback: 'blocking',
+  };
+}

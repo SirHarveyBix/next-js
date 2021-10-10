@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import classes from '../../styles/Button.module.css';
 
-function Button(props) {
+function CustomButton(props) {
   if (props.link) {
     return (
       <Link href={props.link}>
@@ -15,4 +15,4 @@ function Button(props) {
     </button>
   );
 }
-export default Button;
+export default CustomButton;
