@@ -5,7 +5,7 @@ import EventSummary from '../../components/event-detail/EventSummary';
 import EventLogistics from '../../components/event-detail/EventLogistics';
 import EventContent from '../../components/event-detail/EventContent';
 import ErrorAlert from '../../components/ui/ErrorAlert';
-import Button from '../../components/ui/Button';
+import CustomButton from '../../components/ui/CustomButton';
 
 function EventDetailPage() {
   const router = useRouter();
@@ -18,7 +18,7 @@ function EventDetailPage() {
         <ErrorAlert>
           <p>No event found !</p>
         </ErrorAlert>
-        <Button link="/events">Show all events</Button>
+        <CustomButton link="/events">Show all events</CustomButton>
       </div>
     );
 
