@@ -1,26 +1,19 @@
 import { Fragment } from 'react';
-import { useRouter } from 'next/router';
-import { getEventById } from '../../data';
+import { getFeaturedEvents, getEventById } from '../../helpers/api-utils';
 import EventSummary from '../../components/event-detail/EventSummary';
 import EventLogistics from '../../components/event-detail/EventLogistics';
 import EventContent from '../../components/event-detail/EventContent';
-import ErrorAlert from '../../components/ui/ErrorAlert';
-import CustomButton from '../../components/ui/CustomButton';
 
-function EventDetailPage() {
-  const router = useRouter();
-  const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+function EventDetailPage(props) {
+  const { event } = props;
 
-  if (!event)
+  if (!event) {
     return (
       <div className="center">
-        <ErrorAlert>
-          <p>No event found !</p>
-        </ErrorAlert>
-        <CustomButton link="/events">Show all events</CustomButton>
+        <p>Loading ... </p>
       </div>
     );
+  }
 
   return (
     <Fragment>
@@ -37,4 +30,26 @@ function EventDetailPage() {
     </Fragment>
   );
 }
+
+export async function getStaticProps(context) {
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+  return {
+    props: {
+      event: event,
+    },
+    revalidate: 30,
+  };
+}
+
+//pregenerate only featured events
+export async function getStaticPaths() {
+  const events = await getFeaturedEvents();
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+  return {
+    paths: paths,
+    fallback: 'blocking',
+  };
+}
+
 export default EventDetailPage;
