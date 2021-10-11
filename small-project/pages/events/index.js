@@ -4,7 +4,7 @@ import { getAllEvents } from '../../helpers/api-utils';
 import EventsSearch from '../../components/events/EventsSearch';
 
 function EventsPage(props) {
-  const { allEvents } = props;
+  const { events } = props;
   const router = useRouter();
 
   const findEventsHandler = (year, month) => {
@@ -15,7 +15,7 @@ function EventsPage(props) {
   return (
     <>
       <EventsSearch onSearch={findEventsHandler} />
-      <EventList items={allEvents} />
+      <EventList items={events} />
     </>
   );
 }
