@@ -1,39 +1,57 @@
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import { EventList } from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import ResultsTitle from '../../components/events/ResultsTitle';
-import { getFilteredEvents } from '../../helpers/api-utils';
+// import { getFilteredEvents } from '../../helpers/api-utils';
 import CustomButton from '../../components/ui/CustomButton';
 import ErrorAlert from '../../components/ui/ErrorAlert';
-// import useSWR from 'swr';
+import useSWR from 'swr';
 
-function FilteredEvents(props) {
+function FilteredEvents() {
+  // props
+  const today = new Date();
+
+  const [events, setEvents] = useState();
+
   const router = useRouter();
-  const filteredEvents = props.events;
-  // const filteredYear = filterData[0];
-  // const numYear = +filteredYear;
-  // const filteredMonth = filterData[1];
-  // const numMonth = +filteredMonth;
-  // const filteredEvents = await getFilteredEvents({ year: numYear, month: numMonth });
+  const filterData = router.query.slug;
 
-  const findEventsHandler = (year, month) => {
-    const fullPath = `/events/${year}/${month}`;
-    router.push(fullPath);
-  };
+  const fetcher = (url) => fetch(url).then((response) => response.json());
+  const { data, error } = useSWR(
+    'https://nextjs-5417c-default-rtdb.europe-west1.firebasedatabase.app/events.json',
+    fetcher
+  );
 
-  //  const today = new Date();
-  // if (
-  //   isNaN(numMonth) ||
-  //   isNaN(numYear) ||
-  //   numYear > today.getFullYear() + 15 ||
-  //   numYear < today.getFullYear() ||
-  //   numMonth < 1 ||
-  //   numMonth > 12
-  // ) {
-  //   return;
-  // }
+  useEffect(() => {
+    const events = [];
+    if (data) {
+      for (const key in data) {
+        events.push({
+          id: key,
+          ...data[key],
+        });
+      }
+      setEvents(events);
+    }
+  }, [data]);
 
-  if (props.hasError) {
+  if (!events) return <p className="center">Loading .. </p>;
+
+  const filteredYear = filterData[0];
+  const numYear = +filteredYear;
+  const filteredMonth = filterData[1];
+  const numMonth = +filteredMonth;
+
+  if (
+    isNaN(numMonth) ||
+    isNaN(numYear) ||
+    numYear > today.getFullYear() + 15 ||
+    numYear < today.getFullYear() ||
+    numMonth < 1 ||
+    numMonth > 12 ||
+    error
+  ) {
     return (
       <>
         <div className="center">
@@ -46,6 +64,15 @@ function FilteredEvents(props) {
       </>
     );
   }
+  const filteredEvents = events.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate.getFullYear() === numYear && eventDate.getMonth() === numMonth - 1;
+  });
+
+  const findEventsHandler = (year, month) => {
+    const fullPath = `/events/${year}/${month}`;
+    router.push(fullPath);
+  };
 
   if (filteredEvents.length === 0 || !filteredEvents) {
     return (
@@ -63,41 +90,42 @@ function FilteredEvents(props) {
 
   return (
     <>
-      <ResultsTitle date={new Date(props.date.year, props.date.month - 1)} />
+      <ResultsTitle date={new Date(numYear, numMonth - 1)} />
       <EventList items={filteredEvents} />
     </>
   );
 }
+
 export default FilteredEvents;
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const filterData = params.slug;
-  const filteredYear = filterData[0];
-  const numYear = +filteredYear;
-  const filteredMonth = filterData[1];
-  const numMonth = +filteredMonth;
+// export async function getServerSideProps(context) {
+//   const { params } = context;
+//   const filterData = params.slug;
+//   const filteredYear = filterData[0];
+//   const numYear = +filteredYear;
+//   const filteredMonth = filterData[1];
+//   const numMonth = +filteredMonth;
 
-  const filteredEvents = await getFilteredEvents({ year: numYear, month: numMonth });
+//   const filteredEvents = await getFilteredEvents({ year: numYear, month: numMonth });
 
-  const today = new Date();
-  if (
-    isNaN(numMonth) ||
-    isNaN(numYear) ||
-    numYear > today.getFullYear() + 15 ||
-    numYear < today.getFullYear() ||
-    numMonth < 1 ||
-    numMonth > 12
-  ) {
-    return {
-      hasError: true,
-    };
-  }
+//   const today = new Date();
+//   if (
+//     isNaN(numMonth) ||
+//     isNaN(numYear) ||
+//     numYear > today.getFullYear() + 15 ||
+//     numYear < today.getFullYear() ||
+//     numMonth < 1 ||
+//     numMonth > 12
+//   ) {
+//     return {
+//       hasError: true,
+//     };
+//   }
 
-  return {
-    props: {
-      events: filteredEvents,
-      date: { year: numYear, month: numMonth },
-    },
-  };
-}
+//   return {
+//     props: {
+//       events: filteredEvents,
+//       date: { year: numYear, month: numMonth },
+//     },
+//   };
+// }
