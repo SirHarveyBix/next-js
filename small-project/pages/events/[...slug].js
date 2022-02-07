@@ -4,6 +4,7 @@ import { EventList } from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import ResultsTitle from '../../components/events/ResultsTitle';
 import { getFilteredEvents } from '../../helpers/api-utils';
+
 import CustomButton from '../../components/ui/CustomButton';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 import useSWR from 'swr';
@@ -129,3 +130,36 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+// export async function getServerSideProps(context) {
+//   const { params } = context;
+//   const filterData = params.slug;
+//   const filteredYear = filterData[0];
+//   const numYear = +filteredYear;
+//   const filteredMonth = filterData[1];
+//   const numMonth = +filteredMonth;
+
+//   const filteredEvents = await getFilteredEvents({ year: numYear, month: numMonth });
+
+//   const today = new Date();
+//   if (
+//     isNaN(numMonth) ||
+//     isNaN(numYear) ||
+//     numYear > today.getFullYear() + 15 ||
+//     numYear < today.getFullYear() ||
+//     numMonth < 1 ||
+//     numMonth > 12
+//   ) {
+//     return {
+//       hasError: true,
+//     };
+//   }
+
+//   return {
+//     props: {
+//       events: filteredEvents,
+//       date: { year: numYear, month: numMonth },
+//     },
+//   };
+// }
+
