@@ -1,23 +1,19 @@
 import { Fragment } from 'react';
-import { data } from '../../data/index';
+import { getFeaturedEvents, getEventById } from '../../helpers/api-utils';
 import EventSummary from '../../components/event-detail/EventSummary';
 import EventLogistics from '../../components/event-detail/EventLogistics';
 import EventContent from '../../components/event-detail/EventContent';
-import ErrorAlert from '../../components/ui/ErrorAlert';
-import CustomButton from '../../components/ui/CustomButton';
 
 function EventDetailPage(props) {
-  const event = props;
+  const { event } = props;
 
-  if (!event)
+  if (!event) {
     return (
       <div className="center">
-        <ErrorAlert>
-          <p>No event found !</p>
-        </ErrorAlert>
-        <CustomButton link="/events">Show all events</CustomButton>
+        <p>Loading ... </p>
       </div>
     );
+  }
 
   return (
     <Fragment>
@@ -34,22 +30,26 @@ function EventDetailPage(props) {
     </Fragment>
   );
 }
-export default EventDetailPage;
 
 export async function getStaticProps(context) {
-  const { params } = context;
-  const id = params.eventId;
-  const event = (await data).find((event) => event.id === id);
-
-  return { props: event };
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+  return {
+    props: {
+      event: event,
+    },
+    revalidate: 30,
+  };
 }
 
+//pregenerate only featured events
 export async function getStaticPaths() {
-  const eventData = await data;
-  const pathsWithParams = eventData.map((event) => ({ params: { eventId: `${event.id}` } }));
-
+  const events = await getFeaturedEvents();
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
   return {
-    paths: pathsWithParams,
+    paths: paths,
     fallback: 'blocking',
   };
 }
+
+export default EventDetailPage;

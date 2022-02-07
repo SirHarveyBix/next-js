@@ -1,18 +1,23 @@
-import { data } from '../data/index';
+import { getFeaturedEvents } from '../helpers/api-utils';
 import { EventList } from '../components/events/EventList';
 
 function HomePage(props) {
-  const { featuredEvents } = props;
-
-  return <EventList items={featuredEvents} />;
+  return (
+    <div>
+      <EventList items={props.events} />
+    </div>
+  );
 }
-export default HomePage;
 
 export async function getStaticProps() {
-  const dataEvents = await data;
-  const featuredEvents = dataEvents.filter((event) => event.isFeatured);
-
+  const featuredEvents = await getFeaturedEvents();
   return {
-    props: { featuredEvents },
+    props: {
+      events: featuredEvents,
+    },
+    // half-hour
+    revalidate: 1800,
   };
 }
+
+export default HomePage;
