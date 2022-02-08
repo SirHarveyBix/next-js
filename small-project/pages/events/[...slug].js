@@ -4,6 +4,7 @@ import { EventList } from '../../components/events/EventList';
 import EventsSearch from '../../components/events/EventsSearch';
 import ResultsTitle from '../../components/events/ResultsTitle';
 import { getFilteredEvents } from '../../helpers/api-utils';
+import Head from 'next/head';
 
 import CustomButton from '../../components/ui/CustomButton';
 import ErrorAlert from '../../components/ui/ErrorAlert';
@@ -11,9 +12,7 @@ import useSWR from 'swr';
 
 function FilteredEvents() {
   const today = new Date();
-
   const [events, setEvents] = useState();
-
   const router = useRouter();
   const filterData = router.query.slug;
 
@@ -36,12 +35,31 @@ function FilteredEvents() {
     }
   }, [data]);
 
-  if (!events) return <p className="center">Loading .. </p>;
-
   const filteredYear = filterData[0];
   const numYear = +filteredYear;
   const filteredMonth = filterData[1];
   const numMonth = +filteredMonth;
+
+  let pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`A list of filtered events`} />
+    </Head>
+  );
+
+  if (!events)
+    return (
+      <>
+        {pageHeadData} <p className="center">Loading .. </p>
+      </>
+    );
+
+  pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`All events for : ${numMonth}/${numYear}`} />
+    </Head>
+  );
 
   if (
     isNaN(numMonth) ||
@@ -54,6 +72,7 @@ function FilteredEvents() {
   ) {
     return (
       <>
+        {pageHeadData}
         <div className="center">
           <ErrorAlert>
             <p>Invalid filter, please change dates</p>
@@ -77,6 +96,7 @@ function FilteredEvents() {
   if (filteredEvents.length === 0 || !filteredEvents) {
     return (
       <>
+        {pageHeadData}
         <div className="center">
           <ErrorAlert>
             <p> No events Found for the chosen dates</p>
@@ -90,6 +110,7 @@ function FilteredEvents() {
 
   return (
     <>
+      {pageHeadData}
       <ResultsTitle date={new Date(numYear, numMonth - 1)} />
       <EventList items={filteredEvents} />
     </>
