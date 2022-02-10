@@ -16,8 +16,8 @@ export default class MyDocument extends Document {
 }
 
 // useful to add attributes, or managing the render, like i did here : https://github.com/SirHarveyBix/Jobboard/blob/master/pages/_document.js
-
 // Default Structure to override:
+
 // class MyDocument extends Document {
 //   render() {
 //     return (
