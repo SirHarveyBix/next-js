@@ -28,9 +28,10 @@ async function handler(request, response) {
     // create file if dosen't exists
     const isFileExists = fs.existsSync(filePath);
     if (!isFileExists) {
-      fs.appendFile(filePath, '[]', (error) => {
+      fs.appendFile(filePath, `[${JSON.stringify(newFeedback)}]`, (error) => {
         if (error) throw error;
       });
+      response.status(201).json({ message: 'Succed !', feedback: newFeedback });
     }
 
     const data = extractFeedback(filePath);
