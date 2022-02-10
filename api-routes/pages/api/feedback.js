@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
 
-const builFeedbackPath = () => {
+export const builFeedbackPath = () => {
   return path.join(process.cwd(), 'data', 'feedback.json');
 };
 
-const extractFeedback = (filePath) => {
+export const extractFeedback = (filePath) => {
   const fileData = fs.readFileSync(filePath);
   const data = JSON.parse(fileData);
   return data;
