@@ -10,8 +10,6 @@ npm run dev
 yarn dev ❤️‍🔥
 ```
 
-Then, to make it work, remove .exemple from [data/feedback.example.json](data/feedback.example.json)
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/feedback](http://localhost:3000/api/feedback). This endpoint can be edited in `pages/api/feedback.js`.
