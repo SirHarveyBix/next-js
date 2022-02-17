@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import Layout from '../components/layout/Layout';
+import { NotificationContextProvider } from '../store/notificationContext';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <>
+    <NotificationContextProvider>
+      <Layout>
         <Head>
           {/* Provides meta everwhere that dosen't have any .. just in case */}
           <title>Next Event</title>
@@ -16,8 +17,8 @@ function MyApp({ Component, pageProps }) {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <Component {...pageProps} />
-      </>
-    </Layout>
+      </Layout>
+    </NotificationContextProvider>
   );
 }
 
