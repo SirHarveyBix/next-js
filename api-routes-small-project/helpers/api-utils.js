@@ -4,7 +4,7 @@ export const getAllEvents = async () => {
     'https://nextjs-5417c-default-rtdb.europe-west1.firebasedatabase.app/events.json'
   );
   const data = await response.json();
-  console.log(data);
+
   for (const key in data) {
     events.push({
       id: key,
