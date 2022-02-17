@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { getFeaturedEvents, getEventById } from '../../helpers/api-utils';
 import EventSummary from '../../components/event-detail/EventSummary';
 import EventLogistics from '../../components/event-detail/EventLogistics';
@@ -18,7 +17,7 @@ function EventDetailPage(props) {
   }
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{event.title}</title>
         <meta name="decription" content={event.description} />
@@ -34,7 +33,7 @@ function EventDetailPage(props) {
         <p>{event.description}</p>
       </EventContent>
       <Comments eventId={event.id} />
-    </Fragment>
+    </>
   );
 }
 

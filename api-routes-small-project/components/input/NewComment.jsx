@@ -11,10 +11,6 @@ function NewComment(props) {
   function sendCommentHandler(event) {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredName = nameInputRef.current.value;
-    const enteredComment = commentInputRef.current.value;
-
     if (
       !enteredEmail ||
       enteredEmail.trim() === '' ||
@@ -29,14 +25,14 @@ function NewComment(props) {
     }
 
     props.onAddComment({
-      email: enteredEmail,
-      name: enteredName,
-      text: enteredComment,
+      email: emailInputRef.current.value,
+      name: nameInputRef.current.value,
+      text: commentInputRef.current.value,
     });
   }
 
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={sendCommentHandler}>
       <div className={classes.row}>
         <div className={classes.control}>
           <label htmlFor="email">Your email</label>
