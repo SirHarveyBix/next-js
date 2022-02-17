@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+```bash
+cd api-routes-small-project && yarn | npm i
+```
+
+To install modules, then edit [.env](../api-routes-small-project/.env.sample) file as recommended
+
+Run the development server:
 
 ```bash
 npm run dev

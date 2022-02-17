@@ -1,7 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
+import { connectDatabase, getAllDocuments, insertDocument } from '../../../helpers/db-utils';
 
-function handler(request, response) {
+async function handler(request, response) {
   const eventId = request.query.eventId;
+  let client;
+
+  try {
+    client = await connectDatabase();
+  } catch (error) {
+    response.status(500).json({ message: 'connecting to database failed' });
+    return;
+  }
 
   if (request.method === 'POST') {
     const { email, name, text } = request.body;
@@ -14,36 +22,41 @@ function handler(request, response) {
       text.trim() === ''
     ) {
       response.status(422).json({ message: 'invalid input.' });
+      client.close();
       return;
     }
 
     const newComment = {
-      id: uuidv4(),
+      eventId,
       email,
       name,
       text,
     };
 
-    response.status(201).json({ message: 'comment added.', comment: newComment });
+    let result;
+
+    try {
+      result = await insertDocument(client, 'comments', newComment);
+      newComment._id = result.insertedId;
+      response.status(201).json({ message: 'comment added.', comment: newComment });
+    } catch (error) {
+      response.status(500).json({ message: 'inserting data failed' });
+      return;
+    }
   }
   if (request.method === 'GET') {
-    const dummy = [
-      {
-        id: uuidv4(),
-        name: 'didier',
-        text: 'wuh  ?',
-        email: 'test@ok.lol',
-      },
-      {
-        id: uuidv4(),
-        name: 'didi',
-        text: 'les pâtes cherrie !',
-        email: 'test@ok.lol',
-      },
-    ];
+    let documents;
 
-    response.status(200).json({ comments: dummy });
+    try {
+      documents = await getAllDocuments(client, 'comments', { _id: -1 }, { eventId: eventId });
+
+      response.status(200).json({ comments: documents });
+    } catch (error) {
+      response.status(500).json({ message: 'Getting comments failed' });
+      return;
+    }
   }
+  client.close();
 }
 
 export default handler;
