@@ -1,0 +1,7 @@
+{
+  "gitlab.repositories": {
+    "/Users/School/Documents/VScode/next-js": {
+      "preferredRemoteName": "gitlab"
+    }
+  }
+}
