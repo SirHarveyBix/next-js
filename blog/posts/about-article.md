@@ -2,7 +2,7 @@
 title: Let's enjoy Markdown
 date: '2022-02-17'
 author: Me
-image: 'working-cat.jpeg'
+image: working-cat.jpeg
 excerpt: 'MarkDown, fs/node.js, react and Next.JS'
 isFeatured: true
 ---
