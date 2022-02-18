@@ -1,55 +1,26 @@
 import FeaturedPosts from '../components/HomePage/FeaturedPosts';
 import Hero from '../components/homePage/Hero';
+import { getFeaturedPosts } from '../lib/posts-utils';
 
-export const DUMMY_POSTS = [
-  {
-    title: 'getting started nextjs',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'Nextjs is THE react framework for production - it makes building FS react apps / sites.',
-    date: '2022-02-17',
-    slug: 'getting-started-nextjs1',
-  },
-  {
-    title: 'getting started nextjs',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'Nextjs is THE react framework for production - it makes building FS react apps / sites.',
-    date: '2022-02-17',
-    slug: 'getting-started-nextjs2',
-  },
-  {
-    title: 'getting started nextjs',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'Nextjs is THE react framework for production - it makes building FS react apps / sites.',
-    date: '2022-02-17',
-    slug: 'getting-started-nextjs3',
-  },
-  {
-    title: 'getting started nextjs',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'Nextjs is THE react framework for production - it makes building FS react apps / sites.',
-    date: '2022-02-17',
-    slug: 'getting-started-nextjs4',
-  },
-  {
-    title: 'getting started nextjs',
-    image: 'getting-started-nextjs.png',
-    excerpt:
-      'Nextjs is THE react framework for production - it makes building FS react apps / sites.',
-    date: '2022-02-17',
-    slug: 'getting-started-nextjs5',
-  },
-];
+function HomePage(props) {
+  const { posts } = props;
 
-function HomePage() {
   return (
     <>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={posts} />
     </>
   );
 }
+
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts();
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+    // revalidate : 1800 ? if not, next wil Never Re build after deployment
+  };
+}
+
 export default HomePage;
