@@ -1,3 +1,4 @@
+[Teacher version](https://github.com/mschwarzmueller/nextjs-course-code/tree/10-prj-blog)
 ## Getting Started
 
 First, edit [.env.sample](.env.sample) file, you might wanna use [Mongodb](https://www.mongodb.com)
