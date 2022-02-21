@@ -2,8 +2,18 @@ import classes from '../../../styles/PostContent.module.css';
 import PostHeader from './PostHeader';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+// makes build lighter
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
+import graphql from 'react-syntax-highlighter/dist/cjs/languages/prism/graphql';
+import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+
+SyntaxHighlighter.registerLanguage('js', js);
+SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('graphql', graphql);
+SyntaxHighlighter.registerLanguage('bash', bash);
 
 function PostContent(props) {
   const { post } = props;
