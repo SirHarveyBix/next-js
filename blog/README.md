@@ -1,10 +1,10 @@
 [Teacher version](https://github.com/mschwarzmueller/nextjs-course-code/tree/10-prj-blog)
 ## Getting Started
 
-First, edit [.env.sample](.env.sample) file, you might wanna use [Mongodb](https://www.mongodb.com)
-_this is only for contact page_
+First, edit [.env.sample](.env.sample) file, you might wanna use [Mongodb](https://www.mongodb.com) 
+_(this is only for contact page)_
 
-then run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -22,21 +22,21 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 To add new article (it's not srored on DB) go to [./posts](./posts/about-article.md), article are written on MarkDown, as this readme, made possible with [react-markdown](https://www.npmjs.com/package/react-markdown).
 
-to write a new post, make sure tou created your file.md on /posts folder, edit the header as it follows :
+To write a new post, make sure that you created your file.md on /posts folder, edit the header as it follows :
 
 ```js
 ---
 title: "Let's enjoy Markdown"
 date: '2022-02-17'
 image: working-cat.jpeg
-excerpt: 'MarkDown, fs/node.js, react and Next.JS'
+excerpt: 'MarkDown, React and Next.JS'
 isFeatured: true
 ---
 ```
 
-images must be stored in [/public/images/posts/[ARTICLE-FILENAME]](/blog/public/images/posts/), and be well-named in the header of article, otherwise, images won't appear.
+Images must be stored in [/public/images/posts/[ARTICLE-FILENAME]](/blog/public/images/posts/), and be well-named in the header of article, otherwise, images won't appear.
 
-before deplying your onwn, edit meta tags on [pages](/blog/pages/)
+Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 
 ## Deploy on Vercel
 
