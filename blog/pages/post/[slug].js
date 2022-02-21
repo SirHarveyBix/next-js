@@ -25,7 +25,7 @@ export function getStaticProps(context) {
     props: {
       post: postDetail,
     },
-    // revalidate,
+    revalidate: 600,
   };
 }
 

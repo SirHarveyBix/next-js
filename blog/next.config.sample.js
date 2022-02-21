@@ -1,5 +1,4 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
-require('dotenv').config();
 
 module.exports = (phase) => {
   //base path
@@ -7,23 +6,25 @@ module.exports = (phase) => {
     return {
       reactStrictMode: true,
       env: {
-        mongodb_username: process.env.USERNAME,
-        mongodb_password: process.env.PASSWORD,
-        mongodb_clustername: process.env.CLUSTER,
-        mongodb_database: process.env.DB_DEV,
+        mongodb_username: 'username',
+        mongodb_password: 'password',
+        mongodb_clustername: 'clustername',
+        mongodb_database: 'db-dev',
       },
     };
   }
   return {
     reactStrictMode: true,
+    //base path
     env: {
-      mongodb_username: process.env.USERNAME,
-      mongodb_password: process.env.PASSWORD,
-      mongodb_clustername: process.env.CLUSTER,
-      mongodb_database: process.env.DB_PROD,
+      mongodb_username: 'username',
+      mongodb_password: 'password',
+      mongodb_clustername: 'clustername',
+      mongodb_database: 'db-prod',
     },
   };
 };
+
 // module.exports = (phase, { defaultConfig }) => {
 //   return {
 //     ...defaultConfig,

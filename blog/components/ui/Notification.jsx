@@ -3,7 +3,6 @@ import classes from '../../styles/Notification.module.css';
 
 function Notification(props) {
   const { title, message, status } = props;
-  console.log(title, message, status);
 
   let statusClasses = '';
 
