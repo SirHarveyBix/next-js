@@ -24,6 +24,13 @@ module.exports = (phase) => {
     },
   };
 };
+
+// module.exports = {
+//   extends: [
+//     //...
+//     'plugin:@next/next/recommended',
+//   ],
+// };
 // module.exports = (phase, { defaultConfig }) => {
 //   return {
 //     ...defaultConfig,
