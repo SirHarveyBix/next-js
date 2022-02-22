@@ -40,4 +40,4 @@ Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 
 ## Deployed on Vercel
 
-Over here : https://blog-nw95aropz-sirharveybix.vercel.app/
+Over here : https://blog-sirharveybix.vercel.app/
