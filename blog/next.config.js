@@ -26,6 +26,15 @@ module.exports = {
   basePath: '',
   reactStrictMode: true,
   extends: ['plugin:@next/next/recommended'],
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 // module.exports = (phase, { defaultConfig }) => {
 //   return {
