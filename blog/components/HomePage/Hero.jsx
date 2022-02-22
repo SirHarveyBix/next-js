@@ -1,7 +1,7 @@
 import classes from '../../styles/Hero.module.css';
 import Image from 'next/image';
 
-function Hero() {
+export default function Hero() {
   return (
     <section className={classes.hero}>
       <Image
@@ -19,4 +19,3 @@ function Hero() {
     </section>
   );
 }
-export default Hero;

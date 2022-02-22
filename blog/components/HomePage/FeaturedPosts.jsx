@@ -1,7 +1,7 @@
 import classes from '../../styles/FeaturedPosts.module.css';
 import PostsGrid from '../posts/PostsGrid';
 
-function FeaturedPosts(props) {
+export default function FeaturedPosts(props) {
   const { posts } = props;
 
   return (
@@ -11,4 +11,3 @@ function FeaturedPosts(props) {
     </section>
   );
 }
-export default FeaturedPosts;
