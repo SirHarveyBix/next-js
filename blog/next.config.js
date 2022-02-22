@@ -4,6 +4,8 @@ require('dotenv').config();
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
+      reactStrictMode: true,
+      extends: ['plugin:@next/next/recommended'],
       env: {
         mongodb_username: process.env.USERNAME,
         mongodb_password: process.env.PASSWORD,
@@ -13,6 +15,8 @@ module.exports = (phase) => {
     };
   }
   return {
+    reactStrictMode: true,
+    extends: ['plugin:@next/next/recommended'],
     env: {
       mongodb_username: process.env.USERNAME,
       mongodb_password: process.env.PASSWORD,
@@ -20,18 +24,4 @@ module.exports = (phase) => {
       mongodb_database: process.env.DB_PROD,
     },
   };
-};
-
-module.exports = {
-  reactStrictMode: true,
-  extends: ['plugin:@next/next/recommended'],
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/blog',
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
 };

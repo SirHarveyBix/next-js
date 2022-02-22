@@ -1,5 +1,4 @@
 import { MongoClient } from 'mongodb';
-import 'dotenv/config';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
@@ -21,8 +20,8 @@ export default async function handler(request, response) {
 
     let client;
 
-    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.ntrwp.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
-    console.log(connectionString);
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.wyrhp.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
+
     try {
       client = await MongoClient.connect(connectionString);
     } catch (error) {
