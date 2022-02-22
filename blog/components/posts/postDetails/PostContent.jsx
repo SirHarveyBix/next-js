@@ -9,11 +9,15 @@ import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 import graphql from 'react-syntax-highlighter/dist/cjs/languages/prism/graphql';
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+import git from 'react-syntax-highlighter/dist/cjs/languages/prism/git';
+import shell from 'react-syntax-highlighter/dist/cjs/languages/prism/shell-session';
 
 SyntaxHighlighter.registerLanguage('js', js);
 SyntaxHighlighter.registerLanguage('css', css);
 SyntaxHighlighter.registerLanguage('graphql', graphql);
 SyntaxHighlighter.registerLanguage('bash', bash);
+SyntaxHighlighter.registerLanguage('git', git);
+SyntaxHighlighter.registerLanguage('shell', shell);
 
 function PostContent(props) {
   const { post } = props;

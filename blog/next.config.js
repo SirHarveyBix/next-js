@@ -2,10 +2,10 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 require('dotenv').config();
 
 module.exports = (phase) => {
-  //base path
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       reactStrictMode: true,
+      extends: ['plugin:@next/next/recommended'],
       env: {
         mongodb_username: process.env.USERNAME,
         mongodb_password: process.env.PASSWORD,
@@ -16,6 +16,7 @@ module.exports = (phase) => {
   }
   return {
     reactStrictMode: true,
+    extends: ['plugin:@next/next/recommended'],
     env: {
       mongodb_username: process.env.USERNAME,
       mongodb_password: process.env.PASSWORD,
@@ -24,21 +25,3 @@ module.exports = (phase) => {
     },
   };
 };
-// module.exports = (phase, { defaultConfig }) => {
-//   return {
-//     ...defaultConfig,
-//     webpack: (config) => {
-//       config.resolve = {
-//         ...config.resolve,
-//         fallback: {
-//           fs: false,
-//           path: false,
-//           os: false,
-//         },
-//       };
-//       return config;
-//     },
-//   };
-// };
-
-// //https://stackoverflow.com/a/70267261/16937616
