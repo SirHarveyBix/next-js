@@ -23,7 +23,6 @@ module.exports = (phase) => {
 };
 
 module.exports = {
-  basePath: '',
   reactStrictMode: true,
   extends: ['plugin:@next/next/recommended'],
   // async redirects() {
