@@ -1,6 +1,6 @@
+import { Container, Actions, Button, Control, Controls, Input, Title, Lablel } from './style';
 import { useState, useEffect } from 'react';
-import classes from '../../styles/ContactForm.module.css';
-import Notification from '../ui/Notification';
+import Notification from '../Notification/index';
 
 const sendContactData = async (contactDetails) => {
   const response = await fetch('/api/contact', {
@@ -76,47 +76,49 @@ function ContactForm() {
   }
 
   return (
-    <section className={classes.contact}>
-      <h1>Want to reach me ?</h1>
-      <form className={classes.form} onSubmit={sendMessageHandler}>
-        <div className={classes.controls}>
-          <div className={classes.control}>
-            <label htmlFor="email">Your Email</label>
-            <input
+    <Container>
+      <Title>Want to reach me ?</Title>
+      <form onSubmit={sendMessageHandler}>
+        <Controls>
+          <Control>
+            <Lablel htmlFor="email">Your Email</Lablel>
+            <Input
               type="email"
               id="email"
               required
               value={entertedData.email}
               onChange={(event) => setEnteredData({ ...entertedData, email: event.target.value })}
             />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="name">Your Name</label>
-            <input
+          </Control>
+          <Control>
+            <Lablel htmlFor="name">Your Name</Lablel>
+            <Input
+              tag={'input'}
               type="text"
               id="name"
               required
               value={entertedData.name}
               onChange={(event) => setEnteredData({ ...entertedData, name: event.target.value })}
             />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="message">Your Message</label>
-            <textarea
+          </Control>
+          <Control>
+            <Lablel htmlFor="message">Your Message</Lablel>
+            <Input
+              as="textarea"
               id="message"
               rows="5"
               required
               value={entertedData.message}
               onChange={(event) => setEnteredData({ ...entertedData, message: event.target.value })}
-            ></textarea>
-          </div>
-          <div className={classes.actions}>
-            <button>Send Message</button>
-          </div>
-        </div>
+            />
+          </Control>
+          <Actions>
+            <Button>Send Message</Button>
+          </Actions>
+        </Controls>
         {notification && <Notification {...notification} />}
       </form>
-    </section>
+    </Container>
   );
 }
 export default ContactForm;

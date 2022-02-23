@@ -1,24 +1,26 @@
-import classes from '../../styles/MainNavigation.module.css';
-import Logo from './Logo';
+import { Header, Container, List } from './style';
+import Logo from '../Logo/index';
 import Link from 'next/link';
 
 function MainNavigation() {
   return (
-    <header className={classes.header}>
+    <Header>
       <Link href="/">
         <a>
           <Logo />
         </a>
       </Link>
       <nav>
-        <ul>
-          <li>
+        <Container>
+          <List>
             <Link href="/post">Posts</Link>
+          </List>
+          <List>
             <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
+          </List>
+        </Container>
       </nav>
-    </header>
+    </Header>
   );
 }
 export default MainNavigation;
