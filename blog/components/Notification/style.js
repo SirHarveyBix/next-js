@@ -1,4 +1,6 @@
-.notification {
+import styled from 'styled-components';
+
+export const NotificationStatus = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,31 +15,29 @@
   left: 0;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-}
-
-.notification h2 {
-  font-size: var(--size-6);
-  margin: 0;
-}
-
-.notification p {
-  margin: 0;
-}
-
-.success {
-  background-color: var(--color-success-500);
-  color: var(--color-grey-800);
-}
-
-.error {
-  background-color: var(--color-error-500);
-}
-
+  ${({ status }) =>
+    status === 'error'
+      ? `
+    background-color: var(--color-error-500;`
+      : null}
+  ${({ status }) =>
+    status === 'success'
+      ? `
+    background-color: var(--color-success-500);
+    color: var(--color-grey-800);`
+      : null}
 @media (min-width: 768px) {
-  .notification {
     width: 40rem;
     left: calc(50% - 20rem);
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
   }
-}
+`;
+
+export const Title = styled.h2`
+  font-size: var(--size-6);
+  margin: 0;
+`;
+export const Message = styled.p`
+  margin: 0;
+`;

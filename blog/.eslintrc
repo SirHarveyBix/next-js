@@ -3,6 +3,7 @@
   "env": {
     "node": true
   },
+  "parser": "@babel/eslint-parser",
   "extends": ["plugin:@next/next/recommended", "plugin:prettier/recommended"],
   "rules": {
     "react/no-unescaped-entities": "off",

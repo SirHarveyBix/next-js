@@ -1,4 +1,4 @@
-import ContactForm from '../components/contact/ContactForm';
+import ContactForm from '/components/ContactForm/index';
 import Head from 'next/head';
 
 function ContactPage() {

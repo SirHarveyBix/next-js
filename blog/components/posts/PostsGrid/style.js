@@ -1,4 +1,6 @@
-.grid {
+import styled from 'styled-components';
+
+export const Container = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -6,4 +8,4 @@
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.5rem;
   align-content: center;
-}
+`;
