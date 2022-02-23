@@ -24,7 +24,7 @@ function PostItem(props) {
 
   return (
     <ListContainer>
-      <Link href={linkPath}>
+      <Link href={linkPath} passHref>
         <Container>
           <PictureContainer>
             <Picture src={imagePath} alt={title} width={300} height={200} layout="responsive" />

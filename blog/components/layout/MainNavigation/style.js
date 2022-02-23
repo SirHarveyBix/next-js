@@ -16,14 +16,15 @@ export const Container = styled.ul`
   align-items: baseline;
   margin: 0;
   padding: 0;
-
   @media (min-width: 768px) {
     gap: 0.5rem;
   }
 `;
 
 export const List = styled.li`
-  color: var(--color-grey-100);
+  a {
+    color: var(--color-grey-100);
+  }
   font-size: var(--size-4);
   margin: 0 var(--size-4);
   &:hover,

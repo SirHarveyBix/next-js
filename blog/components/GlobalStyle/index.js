@@ -1,14 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url( '/font/Oswald.regular.ttf') format('truetype');
- }
-  
+  @font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/font/Oswald.regular.ttf') format('truetype');
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -56,13 +56,12 @@ const GlobalStyle = createGlobalStyle`
     color: #252525;
     font-family: 'Roboto', sans-serif;
   }
- 
+
   h1,
   h2,
   h3 {
     font-family: 'Oswald', 'Roboto', sans-serif;
   }
-
 
   a {
     text-decoration: none;
