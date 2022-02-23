@@ -6,6 +6,7 @@ export const ListContainer = styled.li`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: var(--color-grey-800);
   text-align: center;
+  border-radius: 6px;
 `;
 
 export const Container = styled.a`
@@ -19,6 +20,7 @@ export const PictureContainer = styled.div`
 `;
 
 export const Picture = styled(Image)`
+  border-radius: 6px 6px 0 0;
   object-fit: cover;
 `;
 

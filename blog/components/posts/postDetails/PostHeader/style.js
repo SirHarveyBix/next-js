@@ -19,8 +19,7 @@ export const Header = styled.header`
 
 export const Picture = styled(Image)`
   object-fit: cover;
-  width: 200px;
-  height: 120px;
+  border-radius: 6px;
 `;
 
 export const Title = styled.h1`
