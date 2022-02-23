@@ -32,3 +32,7 @@ export const Description = styled.p`
   max-width: 40rem;
   margin: auto;
 `;
+
+export const Spacer = styled.div`
+  padding: 50px;
+`;
