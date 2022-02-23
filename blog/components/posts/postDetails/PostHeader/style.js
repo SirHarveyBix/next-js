@@ -1,4 +1,7 @@
-.header {
+import styled from 'styled-components';
+import Image from 'next/image';
+
+export const Header = styled.header`
   padding-bottom: var(--size-8);
   border-bottom: 8px solid var(--color-primary-100);
   margin: var(--size-4) 0;
@@ -7,31 +10,27 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-}
+  @media (min-width: 768px) {
+    margin: var(--size-8) 0;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+`;
 
-.header h1 {
+export const Picture = styled(Image)`
+  object-fit: cover;
+  width: 200px;
+  height: 120px;
+`;
+
+export const Title = styled.h1`
   font-size: var(--size-8);
   color: var(--color-primary-500);
   margin: 0;
   line-height: initial;
   text-align: center;
-}
-
-.header img {
-  object-fit: cover;
-  width: 200px;
-  height: 120px;
-}
-
-@media (min-width: 768px) {
-  .header {
-    margin: var(--size-8) 0;
-    flex-direction: row;
-    align-items: flex-end;
-  }
-
-  .header h1 {
+  @media (min-width: 768px) {
     font-size: var(--size-16);
     text-align: left;
   }
-}
+`;

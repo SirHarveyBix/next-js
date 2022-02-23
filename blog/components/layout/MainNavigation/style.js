@@ -22,7 +22,7 @@ export const Container = styled.ul`
   }
 `;
 
-export const List = styled.a`
+export const List = styled.li`
   color: var(--color-grey-100);
   font-size: var(--size-4);
   margin: 0 var(--size-4);
