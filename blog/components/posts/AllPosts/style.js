@@ -14,3 +14,7 @@ export const Title = styled.h1`
     font-size: var(--size-16);
   }
 `;
+
+export const Spacer = styled.div`
+  padding: 48px;
+`;

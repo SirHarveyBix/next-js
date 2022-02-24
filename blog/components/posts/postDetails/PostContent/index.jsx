@@ -1,4 +1,4 @@
-import { Container, Picture, Content } from './style';
+import { Container, Picture, Content, Spacer } from './style';
 import PostHeader from '../PostHeader/index';
 import ReactMarkdown from 'react-markdown';
 
@@ -60,10 +60,13 @@ function PostContent(props) {
   };
 
   return (
-    <Container>
-      <PostHeader title={post.title} image={imagePath} />
-      <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
-    </Container>
+    <>
+      <Spacer />
+      <Container>
+        <PostHeader title={post.title} image={imagePath} />
+        <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
+      </Container>
+    </>
   );
 }
 

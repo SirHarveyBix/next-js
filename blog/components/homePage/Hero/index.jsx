@@ -1,8 +1,9 @@
-import { Container, Picture, Title, Description } from './style';
+import { Container, Picture, Title, Description, Spacer } from './style';
 
 function Hero() {
   return (
     <Container>
+      <Spacer />
       <Picture src="/images/site/myself.jpeg" alt="myself" width={350} height={350} />
       <Title>Hi, I'm Guillaume</Title>
       <Description>

@@ -24,3 +24,7 @@ export const Picture = styled(Image)`
 export const Content = styled.p`
   color: var(--color-grey-800);
 `;
+
+export const Spacer = styled.div`
+  padding: 43px;
+`;

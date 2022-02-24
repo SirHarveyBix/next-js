@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  margin: var(--size-8) auto;
+  margin: auto;
   border-radius: 6px;
   background-color: var(--color-grey-100);
   width: 90%;
@@ -44,6 +44,7 @@ export const Controls = styled.div`
   column-gap: 1rem;
   flex-wrap: wrap;
 `;
+
 export const Control = styled.div`
   flex: 1;
   min-width: 10rem;
@@ -53,6 +54,7 @@ export const Actions = styled.div`
   margin-top: var(--size-4);
   text-align: right;
 `;
+
 export const Button = styled.button`
   font: inherit;
   cursor: pointer;
@@ -66,4 +68,8 @@ export const Button = styled.button`
     background-color: var(--color-primary-500);
     border-color: var(--color-primary-500);
   }
+`;
+
+export const Spacer = styled.div`
+  padding: 98px;
 `;

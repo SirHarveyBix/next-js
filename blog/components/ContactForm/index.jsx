@@ -1,4 +1,14 @@
-import { Container, Actions, Button, Control, Controls, Input, Title, Lablel } from './style';
+import {
+  Container,
+  Actions,
+  Button,
+  Control,
+  Controls,
+  Input,
+  Title,
+  Lablel,
+  Spacer,
+} from './style';
 import { useState, useEffect } from 'react';
 import Notification from '../Notification/index';
 
@@ -76,49 +86,54 @@ function ContactForm() {
   }
 
   return (
-    <Container>
-      <Title>Want to reach me ?</Title>
-      <form onSubmit={sendMessageHandler}>
-        <Controls>
-          <Control>
-            <Lablel htmlFor="email">Your Email</Lablel>
-            <Input
-              type="email"
-              id="email"
-              required
-              value={entertedData.email}
-              onChange={(event) => setEnteredData({ ...entertedData, email: event.target.value })}
-            />
-          </Control>
-          <Control>
-            <Lablel htmlFor="name">Your Name</Lablel>
-            <Input
-              tag={'input'}
-              type="text"
-              id="name"
-              required
-              value={entertedData.name}
-              onChange={(event) => setEnteredData({ ...entertedData, name: event.target.value })}
-            />
-          </Control>
-          <Control>
-            <Lablel htmlFor="message">Your Message</Lablel>
-            <Input
-              as="textarea"
-              id="message"
-              rows="5"
-              required
-              value={entertedData.message}
-              onChange={(event) => setEnteredData({ ...entertedData, message: event.target.value })}
-            />
-          </Control>
-          <Actions>
-            <Button>Send Message</Button>
-          </Actions>
-        </Controls>
-        {notification && <Notification {...notification} />}
-      </form>
-    </Container>
+    <>
+      <Spacer />
+      <Container>
+        <Title>Want to reach me ?</Title>
+        <form onSubmit={sendMessageHandler}>
+          <Controls>
+            <Control>
+              <Lablel htmlFor="email">Your Email</Lablel>
+              <Input
+                type="email"
+                id="email"
+                required
+                value={entertedData.email}
+                onChange={(event) => setEnteredData({ ...entertedData, email: event.target.value })}
+              />
+            </Control>
+            <Control>
+              <Lablel htmlFor="name">Your Name</Lablel>
+              <Input
+                tag={'input'}
+                type="text"
+                id="name"
+                required
+                value={entertedData.name}
+                onChange={(event) => setEnteredData({ ...entertedData, name: event.target.value })}
+              />
+            </Control>
+            <Control>
+              <Lablel htmlFor="message">Your Message</Lablel>
+              <Input
+                as="textarea"
+                id="message"
+                rows="5"
+                required
+                value={entertedData.message}
+                onChange={(event) =>
+                  setEnteredData({ ...entertedData, message: event.target.value })
+                }
+              />
+            </Control>
+            <Actions>
+              <Button>Send Message</Button>
+            </Actions>
+          </Controls>
+          {notification && <Notification {...notification} />}
+        </form>
+      </Container>
+    </>
   );
 }
 export default ContactForm;
