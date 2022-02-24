@@ -1,7 +1,15 @@
 import { Header, Container, List, Logo, Button } from './style';
 import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
 
 function MainNavigation() {
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
+
+  const logoutHandler = () => {
+    signOut();
+  };
+
   return (
     <Header>
       <Link href="/">
@@ -11,15 +19,21 @@ function MainNavigation() {
       </Link>
       <nav>
         <Container>
-          <List>
-            <Link href="/auth">Login</Link>
-          </List>
-          <List>
-            <Link href="/profile">Profile</Link>
-          </List>
-          <List>
-            <Button>Logout</Button>
-          </List>
+          {!session && !loading && (
+            <List>
+              <Link href="/auth">Login</Link>
+            </List>
+          )}
+          {session && (
+            <>
+              <List>
+                <Link href="/profile">Profile</Link>
+              </List>
+              <List>
+                <Button onClick={logoutHandler}>Logout</Button>
+              </List>
+            </>
+          )}
         </Container>
       </nav>
     </Header>
