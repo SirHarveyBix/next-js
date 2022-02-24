@@ -4,10 +4,13 @@
     "node": true
   },
   "parser": "@babel/eslint-parser",
-  "extends": ["plugin:@next/next/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "plugin:@next/next/recommended",
+    // "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "react/no-children-prop": "off",
     "prettier/prettier": [
       "error",
       {
