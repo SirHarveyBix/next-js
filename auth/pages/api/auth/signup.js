@@ -2,12 +2,10 @@ import { connectToDatabase } from '../../../lib/db-helper';
 import { hashPassword } from '../../../lib/auth';
 
 async function handler(request, response) {
-  if (request.method !== 'POST') {
-    return;
-  }
+  if (request.method !== 'POST') return;
   const data = request.body;
-  const { email, password } = data;
 
+  const { email, password } = data;
   if (!email || !password || !email.includes('@') || password.trim().length < 7) {
     response
       .status(422)
@@ -16,9 +14,7 @@ async function handler(request, response) {
   }
 
   const client = await connectToDatabase();
-
   const db = client.db();
-
   const existingUser = await db.collection('user').findOne({ email: email });
 
   if (existingUser) {
@@ -35,7 +31,7 @@ async function handler(request, response) {
   });
 
   response.status(201).json({ message: 'User Created' });
-  // return result;
+  client.close();
 }
 
 export default handler;
