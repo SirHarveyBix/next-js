@@ -6,7 +6,7 @@ function ProfilePage() {
 }
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+  const session = await getSession({ req: context.req }); //request doesn't exists
 
   if (!session) {
     return {
